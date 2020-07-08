@@ -1,0 +1,15 @@
+{% extends 'journals/base.html' %}
+{% block content%}
+    <h2>Blogs</h2>
+    <a href="{% url 'blogs:new-blog' %}">add new blog</a>
+
+    {% for blog in blogs %}
+        <h3><a href="{% url 'blogs:blog-details' blog.id %}">{{ blog.title }}</a></h3>
+        <p>{{ blog.owner }}</p>
+        <p><small>{{ blog.date_modified }}</small></p>
+        <!-- <p>{{ blog.text|linebreaks|slice:":100" }}</p> -->
+
+        {% empty %}
+        <h3>No entries</h3>
+    {% endfor %}
+{% endblock %}

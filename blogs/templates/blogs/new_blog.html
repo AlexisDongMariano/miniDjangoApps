@@ -1,0 +1,11 @@
+{% extends "journals/base.html" %}
+{% block content %}
+    <p>Add a new blog:</p>
+    <form action="{% url 'blogs:new-blog' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="add blog">
+    </form>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% endblock content %}
+

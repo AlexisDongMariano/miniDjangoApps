@@ -1,0 +1,27 @@
+{% extends 'journals/base.html' %}
+{% block content%}
+    <h2>{{ blog.title }}</h2>
+    <p><small>{{ blog.date_modified }}</small></p>
+    <p>{{ blog.text|linebreaks }}</p>
+    <br>
+    {% if blog.owner == user %}
+    <a href="{% url 'blogs:edit-blog' blog.id %}">Edit</a>
+    {% endif %}
+
+    <form action="{% url 'blogs:new-comment' blog.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="post comment">
+    </form>
+
+
+    <!-- {% if comments is not None %} -->
+    {% for comment in comments %}
+        <p>{{ comment.owner }}: {{ comment.text }}</p>
+        <p><small>{{ comment.date_added }}</small></p>
+        
+    {% empty %}
+    <p>No entries</p>
+    {% endfor %}
+    <!-- {% endif %} -->
+{% endblock %}
