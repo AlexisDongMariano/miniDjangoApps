@@ -1,0 +1,19 @@
+{% extends "journals/base.html" %}
+{% block content %}
+<p>Learning Log</p>
+
+<p>Learning Log helps you keep track of your learning, for any topic you're
+    learning about.</p>
+
+{% for topic in topics %}
+    <br>    
+    <h3>{{ topic.text }}</h3>
+    <p>{{ topic.owner }}</p>
+    {% for entry in topic.entry_set.all %}
+        <p>{{ entry.text }}</p>
+    {% endfor %}
+{% endfor %}
+
+{{ request }}
+{% endblock content %}
+

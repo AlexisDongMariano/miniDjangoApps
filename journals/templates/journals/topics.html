@@ -1,0 +1,26 @@
+{% extends "journals/base.html" %}
+{% block content %}
+<!-- test -->
+<p>Add a new topic:</p>
+
+<form action="{% url 'journals:new_topic_test' %}" method='post'>
+    {% csrf_token %}
+    <!-- The as_p modifer tells Django to render all the form elements in paragraph format -->
+    {{ form.as_p }}
+    <input type="submit" value="add topic">
+</form>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<!-- test -->
+
+<ul>
+    {% for topic in topics %}
+    
+    <li><a href="{% url 'journals:topic' topic.id %}">{{ topic.text }}</a></li>
+    {% empty %}
+    <li>No topics have been added</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'journals:new_topic' %}">Add a new topic</a>
+{% endblock content %}
+

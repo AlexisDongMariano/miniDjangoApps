@@ -1,0 +1,16 @@
+<p>
+    <a href="{% url 'journals:index' %}">Overview</a> -
+    <a href="{% url 'journals:topics' %}">Topics</a> -
+    <a href="{% url 'pizzas:index' %}">Pizzeria</a> -
+    <a href="{% url 'blogs:index' %}">Blog</a> -
+    <a href="{% url 'blogs2:index' %}">Blog2</a> -
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}.
+        <a href="{% url 'users:logout' %}">log out</a>
+    {% else %}
+        <a href="{% url 'users:register' %}">register</a> - 
+        <a href="{% url 'users:login' %}">log in</a>
+    {% endif %}
+</p>
+
+{% block content %}{% endblock content %}
