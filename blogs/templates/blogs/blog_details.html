@@ -1,14 +1,27 @@
-{% extends 'journals/base.html' %}
+{% extends 'blogs/base.html' %}
 {% block content%}
     <h2>{{ blog.title }}</h2>
     <p><small>{{ blog.date_modified }}</small></p>
     <p>{{ blog.text|linebreaks }}</p>
     <br>
     {% if blog.owner == user %}
-    <a href="{% url 'blogs:edit-blog' blog.id %}">Edit</a>
+    <a href="{% url 'blogs2:edit-blog' blog.id %}">Edit</a>
     {% endif %}
 
-    <form action="{% url 'blogs:new-comment' blog.id %}" method='post'>
+    <form action="{% url 'blogs2:blog-like' blog.id %}" method="POST">
+    {% csrf_token %}
+    {% if liked %}
+        <p>{{ liked }}</p>
+        <button type="submit">unlike</button>
+    {% else %}
+        <p>{{ liked }}</p>
+        <button type="submit">like</button>
+    {% endif %}
+    </form>
+    <strong>{{ likes.count }} like{{ likes.count|pluralize }}</strong>
+    
+
+    <form action="{% url 'blogs2:new-comment' blog.id %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="post comment">

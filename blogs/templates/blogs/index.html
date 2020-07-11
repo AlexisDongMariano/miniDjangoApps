@@ -1,10 +1,10 @@
-{% extends 'journals/base.html' %}
+{% extends 'blogs/base.html' %}
 {% block content%}
     <h2>Blogs</h2>
-    <a href="{% url 'blogs:new-blog' %}">add new blog</a>
+    <a href="{% url 'blogs2:new-blog' %}">add new blog</a>
 
     {% for blog in blogs %}
-        <h3><a href="{% url 'blogs:blog-details' blog.id %}">{{ blog.title }}</a></h3>
+        <h3><a href="{% url 'blogs2:blog-details' blog.id %}">{{ blog.title }}</a></h3>
         <p>{{ blog.owner }}</p>
         <p><small>{{ blog.date_modified }}</small></p>
         <!-- <p>{{ blog.text|linebreaks|slice:":100" }}</p> -->

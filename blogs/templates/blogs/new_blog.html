@@ -1,7 +1,7 @@
-{% extends "journals/base.html" %}
+{% extends "blogs/base.html" %}
 {% block content %}
     <p>Add a new blog:</p>
-    <form action="{% url 'blogs:new-blog' %}" method='post'>
+    <form action="{% url 'blogs2:new-blog' %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="add blog">
