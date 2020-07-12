@@ -1,0 +1,16 @@
+{% extends "polls/base.html"%}
+{% block content %}
+{% if latest_question_list %}
+<ul>
+    {% for question in latest_question_list %}
+    <li>
+        <!-- polls:detail because polls is a namespace added as app name in views -->
+        <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+        <p class="text-muted">on {{ question.pub_date }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p> No polls are available. </p>
+{% endif %}
+{% endblock content%}
